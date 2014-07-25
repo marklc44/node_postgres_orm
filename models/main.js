@@ -4,27 +4,34 @@ var Models = {};
 
 Models.Person = Person;
 
-var steve = {firstname: 'Steve', lastname: 'Jones'};
-console.log(steve);
-Models.Person.create(steve, function(newPerson) {
-	console.log(newPerson);
-});
-
-// Models.Person.findBy(firstname, 'Max', function() {
-// 	max = new Person()
-// });
-
-Models.Person.all(function(err, people){
-  console.log(people);
-});
 
 // For testing
+
+var steve = {firstname: 'Steve', lastname: 'Jones'};
+
+// Models.Person.create(steve, function(newPerson) {
+// 	console.log(newPerson);
+// });
+
+// Models.Person.findBy('id', 8, function(err, person) {
+// 	console.log(person);
+// });
+
+// Models.Person.all(function(err, people){
+//   console.log(people);
+// });
+// Models.Person.findBy('id', 5, function(err, person) {
+// 	console.log(person);
+// 	person.destroy(function(err) {
+// 		console.log(err);
+// 	});
+// })
 
 // Models.Person.findBy("id", 1, function(err, person){
 //   console.log("found", person);
 //   person.update({firstname: "sam", lastname: "creek"}, function(err, person){
 //     console.log("UPDATED:", person)
 //   });
-// })
+// });
 
 module.exports = Models;	
