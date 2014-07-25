@@ -8,15 +8,24 @@ function Person(params) {
 
 
 Person.all = function(callback){
-  db.query("YOUR QUERY HERE",[], function(err, res){
+
+  db.query("SELECT * FROM people",[], function(err, res){
     var allPeople = [];
-    // do something here with res
+    res.rows.forEach(function(params) {
+      allPeople.push(new Person(params));
+    });
     callback(err, allPeople);
   });
 }
 
+// shield sql
+// with values like this $1, $2... and ['value1', 'value2']
+// so code in form submits can't inject sql
+// db.query("INSERT INTO books (title, author) VALUES ($1, $2) RETURNING *", ["The Great Gatsby", "Fitzgerald"])
+
 Person.findBy = function(key, val, callback) {
-  db.query("",[val], function(err, res){
+  // build statements
+  db.query("SELECT * FROM people WHERE " + key + "=$1",[val], function(err, res){
     var foundRow, foundPerson;
     // do something here with res
     callback(err, foundPerson);
@@ -26,7 +35,7 @@ Person.findBy = function(key, val, callback) {
 
 
 Person.create = function(params, callback){
-  db.query("", [params.firstname, params.lastname], function(err, res){
+  db.query("INSERT INTO people(firstname, lastname) VALUES ($1, $2) RETURNING *", [params.firstname, params.lastname], function(err, res){
     var createdRow, newPerson;
     callback(err, newPerson);
   });
@@ -46,6 +55,7 @@ Person.prototype.update = function(params, callback) {
     }
   }
 
+  // This is a model for what to do with other methods
   var statement = "UPDATE people SET " + colNames.join(", ") + " WHERE id=$1 RETURNING *";
   var values = [this.id].concat(colVals);
   console.log("Running:");
@@ -65,8 +75,8 @@ Person.prototype.update = function(params, callback) {
 }
 
 Person.prototype.destroy = function(){
-  db.query("", [this.id], function(err, res) {
-    callback(err)
+  db.query("DELETE * FROM people WHERE id=$1", [this.id], function(err, res) {
+    callback(err);
   });
 }
 

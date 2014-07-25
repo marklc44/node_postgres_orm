@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS people (
   created_at TIMESTAMP NOT NULL DEFAULT now()
 );
 
+INSERT INTO people(firstname,lastname) VALUES ('John', 'Doe');
 
 \d+ people
 \q
