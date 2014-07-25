@@ -16,13 +16,11 @@ app.use(methodOverride("_method"));
 app.get("/people", function(req, res){
   Person.all(function(err, people) {
     if (!err) {
-      res.render("people/index", {people: people})
+      res.render("people/index", {people: people});
     } else {
       res.send('There was an error!', err);
     }
-
   });
-  
 });
 
 app.get("/people/new", function(req, res){
@@ -34,7 +32,7 @@ app.get("/people/:id", function(req,res){
   var id = Number(req.params.id);
   Person.findBy('id', id, function(err, person) {
     if (!err) {
-      res.render("people/show", {person: person });
+      res.render("people/show", {person: person});
     } else {
       res.send('There was an error!', err);
     }
@@ -45,13 +43,14 @@ app.get("/people/:id/edit", function(req,res){
   res.render("people/edit", {person: {} });
 });
 
-
-
 app.post("/people", function(req, res){
   res.redirect("/people")
 });
 
 app.delete("/people/:id", function(req, res){
+  var id = Number(req.params.id);
+  // find by id
+  // destroy
   res.redirect("/people");
 });
 

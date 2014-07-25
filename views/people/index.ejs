@@ -4,7 +4,6 @@
   </head>
   <body>
   	<ul>
-  		
     <% people.forEach(function(person) { %>
 			<li><a href="/people/<%= person.id %>"><%= person.lastname %>, <%= person.firstname %></a></li>
     <% }) %>
