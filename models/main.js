@@ -1,4 +1,5 @@
 var Person = require('./person');
+var Record = require('./record');
 
 var Models = {};
 
@@ -9,17 +10,18 @@ Models.Person = Person;
 
 var steve = {firstname: 'Steve', lastname: 'Jones'};
 
-Models.Person.create(steve, function(newPerson) {
-	console.log(newPerson);
-});
+// Models.Person.create(steve, function(newPerson) {
+// 	console.log(newPerson);
+// });
 
 // Models.Person.findBy('id', 4, function(err, person) {
 // 	console.log(person);
 // });
 
-// Models.Person.all(function(err, people){
-//   console.log(people);
-// });
+Models.Person.all('people', function(err, people){
+  console.log(people);
+});
+
 // Models.Person.findBy('id', 5, function(err, person) {
 // 	console.log(person);
 // 	person.destroy(function(err) {

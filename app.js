@@ -2,6 +2,7 @@ var express = require('express'),
   bodyParser = require('body-parser'),
   methodOverride = require('method-override'),
   Person = require('./models/main.js').Person,
+  Record = require('./models/main.js').Record,
   expressLayouts = require('express-ejs-layouts'),
   app = express();
 
@@ -18,7 +19,7 @@ app.use(methodOverride("_method"));
 
 
 app.get("/people", function(req, res){
-  Person.all(function(err, people) {
+  Person.all('people', function(err, people) {
     if (!err) {
       res.render("people/index", {people: people});
     } else {

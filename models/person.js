@@ -1,4 +1,6 @@
-var db = require('./db');
+var db = require('./db'),
+    inherit = require('./inherit'),
+    Record = require('./record');
 
 function Person(params) {
   this.firstname = params.firstname;
@@ -6,17 +8,24 @@ function Person(params) {
   this.id = params.id;
 };
 
-Person.all = function(callback){
-  console.log("Person.all()")
-  db.query("SELECT * FROM people",[], function(err, res){
-    var allPeople = [];
+// Inherit from Record
+inherit(Person, Record);
 
-    res.rows.forEach(function(params) {
-      allPeople.push(new Person(params));
-    });
-    callback(err, allPeople);
-  });
+Person.all = function(table, callback) {
+  Record.all(table, callback);
 }
+
+// Person.all = function(callback){
+//   console.log("Person.all()")
+//   db.query("SELECT * FROM people",[], function(err, res){
+//     var allPeople = [];
+
+//     res.rows.forEach(function(params) {
+//       allPeople.push(new Person(params));
+//     });
+//     callback(err, allPeople);
+//   });
+// }
 
 Person.findBy = function(key, val, callback) {
   console.log("Person.findBy() " + key + ", " + val);
