@@ -50,6 +50,7 @@ Person.prototype.update = function(params, callback) {
 
   for(var key in this) {
     if(this.hasOwnProperty(key) && params[key] !== undefined){
+      console.log('from prototype: ', params);
       var colName = key + "=$" + count;
       colNames.push(colName);
       colVals.push(params[key]);

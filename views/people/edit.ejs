@@ -1,8 +1,6 @@
-<!doctype html>
-<html>
-  <head>
-  </head>
-  <body>
-
-  </body>
-</html>
+<h2>Add a New Person</h2>
+<form action="/people/<%= person.id %>?_method=put" method="post">
+	<input type="text" name="person[firstname]" value="<%= person.firstname %>" id="first-name" placeholder="First Name">
+	<input type="text" name="person[lastname]" value="<%= person.lastname %>" id="last-name"placeholder="Last Name">
+	<input type="submit" value="Add person">
+</form>

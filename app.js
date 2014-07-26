@@ -45,22 +45,33 @@ app.get("/people/:id", function(req,res){
 });
 
 app.get("/people/:id/edit", function(req,res){
-  res.render("people/edit", {person: {} });
+  var id = Number(req.params.id);
+
+  Person.findBy('id', id, function(err, person) {
+    res.render("people/edit", {person: person });
+  });
+  
 });
 
 app.post("/people", function(req, res){
-  res.redirect("/people")
+  var params = req.body.person;
+
+  Person.create(params, function(err, newPerson) {
+    console.log(newPerson);
+  });
+  res.redirect("/people");
 });
 
 
 //this doesn't work at all!!!
 app.delete("/people/:id", function(req, res){
   var id = Number(req.params.id);
-  console.log('delete is about to find')
+  console.log('delete is about to find');
+
   Person.findBy('id', id, function(err, person) {
     console.log('finding in delete');
     person.destroy(function(err) {
-      console.log('desroying');
+      console.log('destroying');
       res.redirect('/people');
     });
   });
@@ -68,6 +79,18 @@ app.delete("/people/:id", function(req, res){
 });
 
 app.put("/people/:id", function(req,res){
+  var id = Number(req.params.id);
+
+  Person.findBy('id', id, function(err, person) {
+
+    var params = req.body.person;
+
+   //  console.log(params);
+    person.update(params, function(err, _this) {
+      console.log('_this: ', _this);
+    });
+  });
+
   res.redirect("/people");
 });
 
