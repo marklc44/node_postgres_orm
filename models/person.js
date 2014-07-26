@@ -6,7 +6,6 @@ function Person(params) {
   this.id = params.id;
 };
 
-
 Person.all = function(callback){
   console.log("Person.all()")
   db.query("SELECT * FROM people",[], function(err, res){
@@ -18,11 +17,6 @@ Person.all = function(callback){
     callback(err, allPeople);
   });
 }
-
-// shield sql
-// with values like this $1, $2... and ['value1', 'value2']
-// so code in form submits can't inject sql
-// db.query("INSERT INTO books (title, author) VALUES ($1, $2) RETURNING *", ["The Great Gatsby", "Fitzgerald"])
 
 Person.findBy = function(key, val, callback) {
   console.log("Person.findBy() " + key + ", " + val);
@@ -39,6 +33,9 @@ Person.findBy = function(key, val, callback) {
 Person.create = function(params, callback){
   db.query("INSERT INTO people(firstname, lastname) VALUES ($1, $2) RETURNING *", [params.firstname, params.lastname], function(err, res){
     var createdRow, newPerson;
+    res.rows.forEach(function(row) {
+      newPerson = new Person(row.firstname, row.lastname);
+    });
     callback(err, newPerson);
   });
 };

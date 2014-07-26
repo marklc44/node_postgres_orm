@@ -3,6 +3,7 @@
 <% people.forEach(function(person) { %>
 	<li>
 		<a href="/people/<%= person.id %>"><%= person.lastname %>, <%= person.firstname %></a>
+		<a class="button" href="/people/<%= person.id %>/edit">Edit</a>
 		<form action="/people/<%= person.id %>?_method=delete" method="post">
 			<input type="submit" value="Delete">
 		</form>

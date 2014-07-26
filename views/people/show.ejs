@@ -1,2 +1,7 @@
 
 <h2><%= person.lastname %>, <%= person.firstname %></h2>
+<a class="button" href="/people/<%= person.id %>/edit">Edit</a>
+<form action="/people/<%= person.id %>?_method=delete">
+	<input class="button delete" type="submit" value="Delete">
+</form>
+

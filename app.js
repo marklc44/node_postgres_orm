@@ -62,30 +62,22 @@ app.post("/people", function(req, res){
   res.redirect("/people");
 });
 
-
-//this doesn't work at all!!!
 app.delete("/people/:id", function(req, res){
   var id = Number(req.params.id);
-  console.log('delete is about to find');
 
   Person.findBy('id', id, function(err, person) {
-    console.log('finding in delete');
     person.destroy(function(err) {
-      console.log('destroying');
       res.redirect('/people');
     });
   });
-  
 });
 
 app.put("/people/:id", function(req,res){
   var id = Number(req.params.id);
 
   Person.findBy('id', id, function(err, person) {
-
     var params = req.body.person;
 
-   //  console.log(params);
     person.update(params, function(err, _this) {
       console.log('_this: ', _this);
     });

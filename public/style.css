@@ -3,6 +3,26 @@ body {
 	padding: 0;
 	font-family: sans-serif;
 }
+.page-header {
+	padding: 2em;
+	overflow: hidden;
+}
+.logo {
+	float: left;
+	margin-right: 2em;
+	font-size: 2em;
+}
+.nav {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	text-indent: none;
+}
+.nav li {
+	display: inline-block;
+	margin-right: 2em;
+	line-height: 2em;
+}
 
 .content-wrapper {
 	width: 80%;

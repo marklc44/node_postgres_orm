@@ -9,9 +9,9 @@ Models.Person = Person;
 
 var steve = {firstname: 'Steve', lastname: 'Jones'};
 
-// Models.Person.create(steve, function(newPerson) {
-// 	console.log(newPerson);
-// });
+Models.Person.create(steve, function(newPerson) {
+	console.log(newPerson);
+});
 
 // Models.Person.findBy('id', 4, function(err, person) {
 // 	console.log(person);
