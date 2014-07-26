@@ -1,0 +1,44 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+.content-wrapper {
+	width: 80%;
+	margin: 0 auto;
+}
+.results {
+	width: 100%;
+	overflow: hidden;
+	list-style-type: none;
+	padding: 0;
+	text-indent: 0;
+}
+.results li {
+	overflow: hidden;
+	width: 100%;
+	padding: 1em;
+	background: #eee;
+	margin-bottom: 1em;
+}
+.pull-left {
+	float: left;
+}
+.pull-right {
+	float: right;
+}
+
+.button {
+	background: #888;
+	display: block;
+	border-radius: 6px;
+	border: 1px solid #999;
+	padding: .5em;
+	max-width: 100px;
+	color: white;
+	text-decoration: none;
+}
+.delete {
+	background: red;
+}

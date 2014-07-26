@@ -8,9 +8,10 @@ function Person(params) {
 
 
 Person.all = function(callback){
-
+  console.log("Person.all()")
   db.query("SELECT * FROM people",[], function(err, res){
     var allPeople = [];
+
     res.rows.forEach(function(params) {
       allPeople.push(new Person(params));
     });
@@ -24,8 +25,7 @@ Person.all = function(callback){
 // db.query("INSERT INTO books (title, author) VALUES ($1, $2) RETURNING *", ["The Great Gatsby", "Fitzgerald"])
 
 Person.findBy = function(key, val, callback) {
-  // build statements
-
+  console.log("Person.findBy() " + key + ", " + val);
   db.query("SELECT * FROM people WHERE " + key + "=$1", [val], function(err, res){
     var foundRow, foundPerson;
     foundRow = res.rows;

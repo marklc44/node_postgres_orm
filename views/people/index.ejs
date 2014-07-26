@@ -1,12 +1,9 @@
-<!doctype html>
-<html>
-  <head>
-  </head>
-  <body>
-  	<ul>
-    <% people.forEach(function(person) { %>
-			<li><a href="/people/<%= person.id %>"><%= person.lastname %>, <%= person.firstname %></a></li>
-    <% }) %>
-		</ul>
-  </body>
-</html>
+<h2>People</h2>
+<ul class="results">
+<% people.forEach(function(person) { %>
+	<li>
+		<a href="/people/<%= person.id %>"><%= person.lastname %>, <%= person.firstname %></a>
+		<a class="button delete pull-right" href="/people/<%= person.id %>?_method=delete">Delete person</a>
+	</li>
+<% }) %>
+</ul>

@@ -13,7 +13,7 @@ var steve = {firstname: 'Steve', lastname: 'Jones'};
 // 	console.log(newPerson);
 // });
 
-// Models.Person.findBy('id', 8, function(err, person) {
+// Models.Person.findBy('id', 4, function(err, person) {
 // 	console.log(person);
 // });
 
