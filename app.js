@@ -36,7 +36,7 @@ app.get("/people/new", function(req, res){
 app.get("/people/:id", function(req,res){
   var id = Number(req.params.id);
 
-  Person.findBy('id', id, function(err, person) {
+  Person.findBy('people', 'id', id, function(err, person) {
     if (err) {
       console.log('There was an error!', err);
     } else {
@@ -48,7 +48,7 @@ app.get("/people/:id", function(req,res){
 app.get("/people/:id/edit", function(req,res){
   var id = Number(req.params.id);
 
-  Person.findBy('id', id, function(err, person) {
+  Person.findBy('people', 'id', id, function(err, person) {
     res.render("people/edit", {person: person });
   });
   
@@ -66,7 +66,7 @@ app.post("/people", function(req, res){
 app.delete("/people/:id", function(req, res){
   var id = Number(req.params.id);
 
-  Person.findBy('id', id, function(err, person) {
+  Person.findBy('people', 'id', id, function(err, person) {
     person.destroy(function(err) {
       res.redirect('/people');
     });
@@ -76,7 +76,7 @@ app.delete("/people/:id", function(req, res){
 app.put("/people/:id", function(req,res){
   var id = Number(req.params.id);
 
-  Person.findBy('id', id, function(err, person) {
+  Person.findBy('people','id', id, function(err, person) {
     var params = req.body.person;
 
     person.update(params, function(err, _this) {

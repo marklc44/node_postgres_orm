@@ -15,29 +15,21 @@ Person.all = function(table, callback) {
   Record.all(table, callback);
 }
 
-// Person.all = function(callback){
-//   console.log("Person.all()")
-//   db.query("SELECT * FROM people",[], function(err, res){
-//     var allPeople = [];
-
-//     res.rows.forEach(function(params) {
-//       allPeople.push(new Person(params));
-//     });
-//     callback(err, allPeople);
-//   });
-// }
-
-Person.findBy = function(key, val, callback) {
-  console.log("Person.findBy() " + key + ", " + val);
-  db.query("SELECT * FROM people WHERE " + key + "=$1", [val], function(err, res){
-    var foundRow, foundPerson;
-    foundRow = res.rows;
-    foundRow.forEach(function(params) {
-      foundPerson = new Person(params);
-    });
-    callback(err, foundPerson);
-  });
+Person.findBy = function(table, key, val, callback) {
+  Record.findBy(table, key, val, callback);
 };
+
+// Person.findBy = function(key, val, callback) {
+//   console.log("Person.findBy() " + key + ", " + val);
+//   db.query("SELECT * FROM people WHERE " + key + "=$1", [val], function(err, res){
+//     var foundRow, foundPerson;
+//     foundRow = res.rows;
+//     foundRow.forEach(function(params) {
+//       foundPerson = new Person(params);
+//     });
+//     callback(err, foundPerson);
+//   });
+// };
 
 Person.create = function(params, callback){
   db.query("INSERT INTO people(firstname, lastname) VALUES ($1, $2) RETURNING *", [params.firstname, params.lastname], function(err, res){
