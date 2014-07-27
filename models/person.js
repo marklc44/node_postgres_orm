@@ -7,17 +7,12 @@ function Person(params) {
   this.lastname = params.lastname;
   this.id = params.id;
 
-  // Record.call(this, all, findBy, create);
 }
 
 
 // Inherit from Record
 inherit(Person, Record);
 
-// Person.all = Record.all;
-
-// Tried to set arguments for table and constructor
-// no dice.
 Person.all = function(callback) {
   var Person = this;
   var table = 'people';
@@ -25,7 +20,18 @@ Person.all = function(callback) {
   Record.all(table, Person, callback);
 };
 
-Person.findBy = Record.findBy;
+Person.findBy = function(val, callback) {
+	var Person = this;
+	var table = 'people';
+	var id = 'id';
+
+	Record.findBy(table, Person, id, val, callback);
+};
+
 Person.create = Record.create;
+
+// Person.create = function() {
+// 	Record.create;
+// };
 
 module.exports = Person;
