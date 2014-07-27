@@ -1,17 +1,17 @@
 var db = require('./db');
 
-function Record(id) {
-	this.id = id;
+function Record() {
+	this.id;
 }
 
-Record.all = function(table, callback) {
+Record.all = function(table, constructor, callback) {
 	console.log("Record.all()")
   db.query("SELECT * FROM " + table, [], function(err, res){
     var allRecords = [];
-
     res.rows.forEach(function(params) {
-      allRecords.push(new Record(params));
+      allRecords.push(new constructor(params));
     });
+    // somehow this is undefined
     callback(err, allRecords);
   });
 };

@@ -6,14 +6,14 @@ function Person(params) {
   this.firstname = params.firstname;
   this.lastname = params.lastname;
   this.id = params.id;
+
+
 };
 
 // Inherit from Record
 inherit(Person, Record);
 
-Person.all = function(table, callback) {
-  Record.all(table, callback);
-}
+Person.all = Record.all;
 
 Person.findBy = function(table, key, val, callback) {
   Record.findBy(table, key, val, callback);

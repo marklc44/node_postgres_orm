@@ -19,7 +19,8 @@ app.use(methodOverride("_method"));
 
 
 app.get("/people", function(req, res){
-  Person.all('people', function(err, people) {
+  Person.all('people', Person, function(err, people) {
+    console.log("People controller: ", people);
     if (!err) {
       res.render("people/index", {people: people});
     } else {

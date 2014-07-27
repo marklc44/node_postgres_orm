@@ -1,5 +1,7 @@
 <h2>Friends</h2>
+<p><%= people[0].firstname %></p>
 <ul class="results">
+
 <% people.forEach(function(person) { %>
 	<li>
 		<a href="/people/<%= person.id %>"><%= person.lastname %>, <%= person.firstname %></a>
