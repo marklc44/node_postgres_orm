@@ -81,7 +81,7 @@ app.put("/people/:id", function(req,res){
   Person.findBy('people', Person, 'id', id, function(err, person) {
     var params = req.body.person;
 
-    person.update(params, function(err, _this) {
+    person.update('people', params, function(err, _this) {
       console.log('_this: ', _this);
     });
   });

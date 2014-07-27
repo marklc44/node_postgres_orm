@@ -59,9 +59,39 @@ Record.create = function(constructor, params, callback){
 //   });
 // };
 
-Record.prototype.update = function() {
+Record.prototype.update = function(table, params, callback) {
+  var colNames = [];
+  var colVals = [];
+  var count = 2;
 
-};
+  for(var key in this) {
+    if(this.hasOwnProperty(key) && params[key] !== undefined){
+      console.log('from prototype: ', params);
+      var colName = key + "=$" + count;
+      colNames.push(colName);
+      colVals.push(params[key]);
+      count++;
+    }
+  }
+
+  // This is a model for what to do with other methods
+  var statement = "UPDATE " + table + " SET " + colNames.join(", ") + " WHERE id=$1 RETURNING *";
+  var values = [this.id].concat(colVals);
+  console.log("Running:");
+  console.log(statement, "with values", values);
+  var _this = this;
+  db.query(statement, values, function(err, res) {
+    var updatedRow;
+    if(err) {
+      console.error("OOP! Something went wrong!", err);
+    } else {
+      updatedRow = res.rows[0];
+      _this.firstname = updatedRow.firstname;
+      _this.lastname = updatedRow.lastname;
+    }
+    callback(err, _this)
+  });
+}
 
 Record.prototype.destroy = function(table, callback){
   db.query("DELETE FROM " + table + " WHERE id=$1", [this.id], function(err, res) {
