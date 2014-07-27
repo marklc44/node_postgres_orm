@@ -15,6 +15,16 @@ function Person(params) {
 inherit(Person, Record);
 
 Person.all = Record.all;
+
+// Tried to set arguments for table and constructor
+// no dice.
+// Person.all = function(callback) {
+//   var Person = Person();
+//   var table = 'people';
+
+//   return Record.all(table, Person, callback);
+// };
+
 Person.findBy = Record.findBy;
 Person.create = Record.create;
 
