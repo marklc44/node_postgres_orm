@@ -1,14 +1,16 @@
 <h2>Friends</h2>
-<p><%= people[0].firstname %></p>
-<ul class="results">
 
+<ul class="results">
 <% people.forEach(function(person) { %>
 	<li>
+		
 		<a href="/people/<%= person.id %>"><%= person.lastname %>, <%= person.firstname %></a>
-		<a class="button" href="/people/<%= person.id %>/edit">Edit</a>
-		<form action="/people/<%= person.id %>?_method=delete" method="post">
-			<input type="submit" value="Delete">
-		</form>
+		<div class="buttons">
+			<a class="button pull-left" href="/people/<%= person.id %>/edit">Edit</a>
+			<form class="pull-left" action="/people/<%= person.id %>?_method=delete" method="post">
+				<input class="button delete" type="submit" value="Delete">
+			</form>
+		</div>
 	</li>
 <% }) %>
 </ul>

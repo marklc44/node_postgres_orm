@@ -49,16 +49,6 @@ Record.create = function(constructor, params, callback){
   });
 };
 
-// Record.create = function(table, constructor, params, callback){
-//   db.query("INSERT INTO " + table + "(firstname, lastname) VALUES ($1, $2) RETURNING *", [params.firstname, params.lastname], function(err, res){
-//     var createdRow, newPerson;
-//     res.rows.forEach(function(row) {
-//       newPerson = new Person(row.firstname, row.lastname);
-//     });
-//     callback(err, newPerson);
-//   });
-// };
-
 Record.prototype.update = function(table, params, callback) {
   var colNames = [];
   var colVals = [];
@@ -74,7 +64,6 @@ Record.prototype.update = function(table, params, callback) {
     }
   }
 
-  // This is a model for what to do with other methods
   var statement = "UPDATE " + table + " SET " + colNames.join(", ") + " WHERE id=$1 RETURNING *";
   var values = [this.id].concat(colVals);
   console.log("Running:");
