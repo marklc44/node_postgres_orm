@@ -28,10 +28,11 @@ Person.findBy = function(val, callback) {
 	Record.findBy(table, Person, id, val, callback);
 };
 
-Person.create = Record.create;
+Person.create = function(params, callback) {
+	var Person = this;
+	var table = 'people';
 
-// Person.create = function() {
-// 	Record.create;
-// };
+	Record.create(table, Person, params, callback);
+};
 
 module.exports = Person;

@@ -28,7 +28,7 @@ Record.findBy = function(table, constructor, key, val, callback) {
   });
 };
 
-Record.create = function(constructor, params, callback){
+Record.create = function(table, constructor, params, callback){
 
 	var colNames = [];
 	var colVals = [];
@@ -42,7 +42,7 @@ Record.create = function(constructor, params, callback){
 		count++;
 	}
 
-  db.query("INSERT INTO people(" + colNames.join(", ") + ") VALUES (" + placeholders.join(", ") + ") RETURNING *", colVals, function(err, res){
+  db.query("INSERT INTO " + table + "(" + colNames.join(", ") + ") VALUES (" + placeholders.join(", ") + ") RETURNING *", colVals, function(err, res){
     var createdRow, newRecord;
    
     callback(err, newRecord);
