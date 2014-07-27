@@ -14,16 +14,16 @@ function Person(params) {
 // Inherit from Record
 inherit(Person, Record);
 
-Person.all = Record.all;
+// Person.all = Record.all;
 
 // Tried to set arguments for table and constructor
 // no dice.
-// Person.all = function(callback) {
-//   var Person = Person();
-//   var table = 'people';
+Person.all = function(callback) {
+  var Person = this;
+  var table = 'people';
 
-//   return Record.all(table, Person, callback);
-// };
+  Record.all(table, Person, callback);
+};
 
 Person.findBy = Record.findBy;
 Person.create = Record.create;
