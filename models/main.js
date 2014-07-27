@@ -18,9 +18,9 @@ var steve = {firstname: 'Steve', lastname: 'Jones'};
 // 	console.log(person);
 // });
 
-Models.Person.all('people', Person, function(err, people){
-  console.log(people);
-});
+// Models.Person.all('people', Person, function(err, people){
+//   console.log(people);
+// });
 
 var max = new Person('max', 'doe');
 console.log(Person.all);

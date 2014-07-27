@@ -15,9 +15,7 @@ inherit(Person, Record);
 
 Person.all = Record.all;
 
-Person.findBy = function(table, key, val, callback) {
-  Record.findBy(table, key, val, callback);
-};
+Person.findBy = Record.findBy;
 
 // Person.findBy = function(key, val, callback) {
 //   console.log("Person.findBy() " + key + ", " + val);

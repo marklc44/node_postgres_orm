@@ -16,13 +16,13 @@ Record.all = function(table, constructor, callback) {
   });
 };
 
-Record.findBy = function(table, key, val, callback) {
+Record.findBy = function(table, constructor, key, val, callback) {
   console.log("Person.findBy() " + key + ", " + val);
   db.query("SELECT * FROM " + table + " WHERE " + key + "=$1", [val], function(err, res){
     var foundRow, foundRecord;
     foundRow = res.rows;
     foundRow.forEach(function(params) {
-      foundRecord = new Record(params);
+      foundRecord = new constructor(params);
     });
     callback(err, foundRecord);
   });
