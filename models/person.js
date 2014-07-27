@@ -7,7 +7,7 @@ function Person(params) {
   this.lastname = params.lastname;
   this.id = params.id;
 
-
+  
 };
 
 // Inherit from Record
@@ -29,15 +29,18 @@ Person.findBy = Record.findBy;
 //   });
 // };
 
-Person.create = function(params, callback){
-  db.query("INSERT INTO people(firstname, lastname) VALUES ($1, $2) RETURNING *", [params.firstname, params.lastname], function(err, res){
-    var createdRow, newPerson;
-    res.rows.forEach(function(row) {
-      newPerson = new Person(row.firstname, row.lastname);
-    });
-    callback(err, newPerson);
-  });
-};
+Person.create = Record.create;
+
+// Person.create = function(params, callback){
+
+//   db.query("INSERT INTO people(firstname, lastname) VALUES ($1, $2) RETURNING *", [params.firstname, params.lastname], function(err, res){
+//     var createdRow, newPerson;
+//     res.rows.forEach(function(row) {
+//       newPerson = new Person(row.firstname, row.lastname);
+//     });
+//     callback(err, newPerson);
+//   });
+// };
 
 Person.prototype.update = function(params, callback) {
   var colNames = [];
@@ -73,10 +76,10 @@ Person.prototype.update = function(params, callback) {
   });
 }
 
-Person.prototype.destroy = function(callback){
-  db.query("DELETE FROM people WHERE id=$1", [this.id], function(err, res) {
-    callback(err);
-  });
-}
+// Person.prototype.destroy = function(callback){
+//   db.query("DELETE FROM people WHERE id=$1", [this.id], function(err, res) {
+//     callback(err);
+//   });
+// }
 
 module.exports = Person;

@@ -58,8 +58,8 @@ app.get("/people/:id/edit", function(req,res){
 app.post("/people", function(req, res){
   var params = req.body.person;
 
-  Person.create(params, function(err, newPerson) {
-    console.log(newPerson);
+  Person.create(Person, params, function(err, newPerson) {
+    //console.log(newPerson);
   });
   res.redirect("/people");
 });
@@ -68,7 +68,8 @@ app.delete("/people/:id", function(req, res){
   var id = Number(req.params.id);
 
   Person.findBy('people', Person, 'id', id, function(err, person) {
-    person.destroy(function(err) {
+    console.log(person);
+    person.destroy('people', function(err) {
       res.redirect('/people');
     });
   });

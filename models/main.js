@@ -14,16 +14,16 @@ var steve = {firstname: 'Steve', lastname: 'Jones'};
 // 	console.log(newPerson);
 // });
 
-// Models.Person.findBy('people', 'id', 4, function(err, person) {
-// 	console.log(person);
-// });
+Models.Person.findBy('people', Person, 'id', 4, function(err, person) {
+	console.log(person);
+});
 
 // Models.Person.all('people', Person, function(err, people){
 //   console.log(people);
 // });
 
 var max = new Person('max', 'doe');
-console.log(Person.all);
+console.log(max.destroy);
 // console.log(max instanceof Record);
 
 // Models.Person.findBy('id', 5, function(err, person) {
